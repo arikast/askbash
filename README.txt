@@ -55,8 +55,8 @@ Sometimes our intent is to select many options, for example "food fruit orange -
 
 'food ':
     'fruit ': &fruit
-        'orange ': 
-        'banana ': 
+        'orange ': *fruit
+        'banana ': *fruit
         '--seedless': 
             '=true ': *fruit
             '=false ': *fruit
