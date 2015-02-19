@@ -105,8 +105,9 @@ class TokenStateGraph
         #note that a simple '.*' regex is not adequate because we need to allow for presence of \'
         @apostrophe = PairedToken.new("'")
 
-        #note that a simple '.*' regex is not adequate because we need to allow for presence of \'
+        #note that a simple ".*" regex is not adequate because we need to allow for presence of \"
         @quote      = PairedToken.new('"') 
+
         @space      = RegexToken.new('\s+')
         
         #note that this needs to go char by char to allow for things like: wow' this is 'interesting
