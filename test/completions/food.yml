@@ -1,0 +1,43 @@
+'food ': &food
+    'fruit ': &fruit
+        'orange ': *fruit
+        'banana ': *fruit
+        'strawberry ': *fruit
+        'grape ':
+            'green ':
+            'red ':
+        'grapefruit ' :
+            'ruby red ':
+            'yellow ':
+        '--seedless': &seedless
+            '=true ': *food
+            '=false ': *food
+    'veg ': 
+        '-maybe ': &m
+            'avocado ':
+            'tomato ':
+        '-m ': *m
+        '-certain ': &c
+            'broccoli ':
+            '"brussel sprouts" ': *food
+            'asparagus ':
+        '-c ': *c
+    'candy ':
+        'skittles:red ':
+        'skittles:yellow ':
+    'booze:':
+        'booze ':
+    'meat ':
+    'dairy:':
+        'cow=':
+            '<Regex>.+ ': *m
+    '-f ':
+        '<Exec> echo $ASKBASH_TOKEN* ': *food
+    '-r ':
+        '<File>': *food
+    '--color ':
+        'red ': *food
+        'white ': *food
+        'blue ': *food
+        '<Regex>.+ ': *m
+    'other ':

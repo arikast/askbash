@@ -1,0 +1,282 @@
+'mvn ': &mvn
+    ### top level flags
+    '-am ': *mvn
+    '--also-make ': *mvn
+
+    '-amd ': *mvn
+    '--also-make-dependents ': *mvn
+
+    '-B ': *mvn
+    '--batch-mode ': *mvn
+
+    '-b ': &b
+        '<Regex>.+ ': *mvn
+    '--builder ': *b
+
+    '-C ': *mvn
+    '--strict-checksums  ': *mvn
+
+    '-c ': *mvn
+    '--lax-checksums ': *mvn
+
+    '-cpu ': *mvn
+    '--check-plugin-updates ': *mvn
+
+
+    '-D ': &D
+        'maven.':
+            'test.skip=': 
+                'true ': *mvn
+                'false ': *mvn
+            'surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Xnoagent -Djava.compiler=NONE" ': *mvn
+        'skipTests ': *mvn
+        'skipTests=': 
+            'true ': *mvn
+            'false ': *mvn
+        'test=':
+            '<Regex>.+ ': *mvn
+        'surefire.':
+            'rerunFailingTestsCount=':
+                '<Regex>([$].*)|(\d+) ': *mvn
+        'jboss-as.':
+            'hostname=':
+                '<Regex>.+ ': *mvn
+            'port=':
+                '<Regex>([$].*)|(\d+) ': *mvn
+            'username=':
+                '<Regex>.+ ': *mvn
+            'password=': 
+                '<Regex>.+ ': *mvn
+        'spring.profiles.active=':
+            '<Regex>.+ ': *mvn
+    '-D': *D
+    '--define ': *D
+
+    '-e ': *mvn
+    '--errors ': *mvn
+
+    '-emp ': &emp
+        '<Regex>.+ ': *mvn
+    '--encrypt-master-password ': *emp
+
+    '-ep ': &ep
+        '<Regex>.+ ': *mvn
+    '--encrypt-password <arg> ': *ep
+
+    '-f ': &f 
+        '<File>': *mvn
+    '--file ': *f
+
+    '-fae ': *mvn
+    '--fail-at-end ': *mvn
+
+    '-ff ': *mvn
+    '--fail-fast ': *mvn
+
+    '-fn ': *mvn
+    '--fail-never ': *mvn
+
+    '-gs ': &gs
+        '<Regex>.+ ': *mvn
+    '--global-settings ': *gs
+
+    '-h ': 
+    '--help ': 
+
+    '-l ': &l
+        '<File>': *mvn
+    '--log-file ': *l
+
+    '-llr ': *mvn
+    '--legacy-local-repository ': *mvn
+
+    '-N ': *mvn
+    '--non-recursive ': *mvn
+
+    '-npr ': *mvn
+    '--no-plugin-registry ': *mvn
+
+    '-npu ': *mvn
+    '--no-plugin-updates ': *mvn
+
+    '-nsu ': *mvn
+    '--no-snapshot-updates ': *mvn
+
+    '-o ': *mvn
+    '--offline ': *mvn
+
+    '-P ': &P
+        '<Regex>.+ ': *mvn
+    '--activate-profiles ': *P
+
+    '-pl ': &pl
+        '<Regex>.+ ': *mvn
+    '--projects <arg> ': *pl
+
+    '-q ': *mvn
+    '--quiet ': *mvn
+
+    '-rf ': &rf
+        '<Regex>.+ ': *mvn
+    '--resume-from ': *rf
+
+    '-s ': &s
+        '<Regex>.+ ': *mvn
+    '--settings ': *s
+
+    '-T ': &T
+        '<Regex>.+ ': *mvn
+    '--threads ': *T
+
+    '-t ': &t
+        '<Regex>.+ ': *mvn
+    '--toolchains ': *t
+
+    '-U ': *mvn
+    '--update-snapshots ': *mvn
+
+    '-up ': *mvn
+    '--update-plugins ': *mvn
+
+    '-V ': *mvn
+    '--show-version ': *mvn
+
+    '-v ':
+    '--version ':
+
+    '-X ': *mvn
+    '--debug ': *mvn
+
+    ### default lifecycles
+    # clean lifecycle
+    'pre-clean ': *mvn
+    'clean ': *mvn
+    'post-clean ': *mvn
+
+    # Default Lifecycle
+    'validate ': *mvn
+    'initialize ': *mvn
+    'generate-sources ': *mvn
+    'process-sources ': *mvn
+    'generate-resources ': *mvn
+    'process-resources ': *mvn
+    'compile ': *mvn
+    'process-classes ': *mvn
+    'generate-test-sources ': *mvn
+    'process-test-sources ': *mvn
+    'generate-test-resources ': *mvn
+    'process-test-resources ': *mvn
+    'test-compile ': *mvn
+    'process-test-classes ': *mvn
+    'test ': *mvn
+    'prepare-package ': *mvn
+    'package ': *mvn
+    'pre-integration-test ': *mvn
+    'integration-test ': *mvn
+    'post-integration-test ': *mvn
+    'verify ': *mvn
+    'install ': *mvn
+    'deploy ': *mvn
+
+    # Site Lifecycle
+    'pre-site ': *mvn
+    'site ': *mvn
+    'post-site ': *mvn
+    'site-deploy ': *mvn
+
+    # common goals
+    'archetype:':
+        'generate ': &archetype_generate
+            '-D':
+                'archetypeGroupId=':
+                    '<Regex>.+ ': *archetype_generate
+                'archetypeArtifactId=':
+                    'maven-archetype-quickstart ': *archetype_generate
+                    '<Regex>.+ ': *archetype_generate
+                'archetypeVersion=':
+                    '<Regex>.+ ': *archetype_generate
+                'groupId=': 
+                    '<Regex>.+ ': *archetype_generate
+                'artifactId=':
+                    '<Regex>.+ ': *archetype_generate
+                'interactiveMode=':
+                    'false ': *archetype_generate
+                    'true ': *archetype_generate
+    'eclipse:':
+        'eclipse ': *mvn
+    'help:':
+        'describe ': &help-describe
+            '-D':
+                'plugin=':
+                    'war ': *help-describe
+                    'eclipse ': *help-describe
+                    '<Regex>.+ ': *help-describe
+                'full=true ': *help-describe
+        'effective-settings ':
+        'effective-pom ':
+        'active-profiles ':
+
+    'compiler:':
+        'help ': &compiler_help
+            '-Dgoal=compile ' : *compiler_help
+            '-Ddetail ' : *compiler_help
+
+    'liquibase:':
+        'changelogSync ': *mvn
+        'changelogSyncSQL ': *mvn
+        'clearCheckSums ': *mvn
+        'dbDoc ': *mvn
+        'diff ': *mvn
+        'dropAll ': *mvn
+        'generateChangeLog ': *mvn
+        'help ': 
+        'listLocks ': *mvn
+        'releaseLocks ': *mvn
+        'rollback ': *mvn
+        'rollbackSQL ': *mvn
+        'status ': *mvn
+        'tag ': *mvn
+        'update ': *mvn
+        'updateSQL ': *mvn
+        'updateTestingRollback ': *mvn
+        'futureRollbackSQL ': *mvn
+    'tomcat:' :
+        'deploy ': *mvn
+        'deploy-only ': *mvn
+        'exploded ': *mvn
+        'help ':
+            '-Ddetail=true ' : 
+        'info ': *mvn
+        'inplace ': *mvn
+        'list ': *mvn
+        'redeploy ': *mvn
+        'reload ': *mvn
+        'resources ': *mvn
+        'roles ': *mvn
+        'run ': *mvn
+        'run-war ': *mvn
+        'run-war-only ': *mvn
+        'sessions ': *mvn
+        'shutdown ': *mvn
+        'start ': *mvn
+        'stop ': *mvn
+        'undeploy ': *mvn
+    'surefire:':
+        'help ': &surefire_help
+            '-D':
+                'detail=true ': *surefire_help
+                'goal=':
+                    '<Regex>.+ ': *surefire_help
+    'jboss-as:':
+        'redeploy ': *mvn
+    'sonar:sonar': *mvn
+    'site:': 
+        'site ': *mvn
+        'stage ': *mvn
+    'versions:':
+        'display-dependency-updates ': *mvn
+        'display-plugin-updates ': *mvn
+        'display-property-updates ': *mvn
+    'dependency:': 
+        'tree ': *mvn
+        'analyze ': *mvn
