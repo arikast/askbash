@@ -1,0 +1,208 @@
+'vagrant ':
+    '--version ':
+    '-v ':
+    '--help ':
+    '-h ':
+    'help ':
+    'box ':
+         'add ':
+            '--help ':
+            '-h ':
+         'list ':
+            '--help ':
+            '-h ':
+         'outdated ':
+            '--help ':
+            '-h ':
+         'remove ':
+            '--help ':
+            '-h ':
+         'repackage ':
+            '--help ':
+            '-h ':
+         'update ':
+            '--help ':
+            '-h ':
+
+    'connect ': &connect
+        '--disable-static-ip ': *connect
+        '--static-ip ': 
+            '<Regex>.+ ':       *connect
+        '--ssh ':               *connect
+        '--help ': 
+        '-h ':
+        '<Regex>.+ ': 
+
+    'destroy ': &destroy
+        '--force ': *destroy
+        '-f ':      *destroy
+        '--help ':  
+        '-h ':
+        '<Regex>.+ ': 
+
+    'docker-logs ': &docker-logs
+        '--follow ':    *docker-logs
+        '--no-follow ': *docker-logs
+        '--prefix ':    *docker-logs
+        '--no-prefix ': *docker-logs
+        '--help ':
+        '-h ': 
+
+    'docker-run ':  &docker-run
+        '--detach ':    *docker-run
+        '--no-detach ': *docker-run  
+        '--tty ':       *docker-run
+        '--no-tty ':    *docker-run
+        '-t ':          *docker-run
+        '--help ':
+        '-h ': 
+        '<Regex>.+ ': 
+
+    'global-status ':
+        '--prune ':  
+        '--help ':
+        '-h ': 
+
+    'halt ': &halt
+        '--force ': *halt
+        '-f ':      *halt
+        '-h ': 
+        '--help ':  
+        '<Regex>.+ ': 
+
+    'init ': &init
+        '--force ':     *init
+        '-f ':          *init
+        '--minimal ':   *init
+        '-m ':          *init
+        '--output ': 
+            '- ':       *init
+            '<File> ':  *init
+        '--help ':
+        '-h ':
+        '<Regex>.+ ': 
+
+    'list-commands ':
+        '--help ':
+        '-h ':
+
+    'login ':
+        '--check ':
+        '-c ':
+        '--logout ':
+        '-k ':
+        '--help ':
+        '-h ':
+
+    'package ': &package
+        '--base ': 
+            '<Regex>.+ ':   *package
+        '--output ': 
+            '<File> ':      *package
+        '--include ': &package_include        FILE...            Additional files to package with the box
+            '<File> ': *package_include
+        '--vagrantfile ': 
+            '<File> ':      *package
+        '--help ':
+        '-h ':
+        '<Regex>.+ ': 
+
+    'plugin ': 
+        'install ':
+            '--help ':
+            '-h ':
+        'license ':
+            '--help ':
+            '-h ':
+        'list ':
+            '--help ':
+            '-h ':
+        'uninstall ':
+            '--help ':
+            '-h ':
+        'update ':
+            '--help ':
+            '-h ':
+        '--help ':
+        '-h ':
+
+    'provision ': [vm-name] [--provision-with x,y,z]
+        '--provision-with ': x,y,z       Enable only certain provisioners, by type.
+        '--parallel ':              Enable or disable parallelism if provider supports it.
+        '--no-parallel ':              Enable or disable parallelism if provider supports it.
+        '--help ':
+        '-h ':
+
+    'rdp ': [options] [name] [-- extra args]
+        '--help ':
+        '-h ':
+
+    'reload ': [vm-name]
+        '--provision ':             Enable or disable provisioning
+        '--no-provision ':             Enable or disable provisioning
+        '--provision-with ': x,y,z       Enable only certain provisioners, by type.
+        '--help ':
+        '-h ':
+
+    'resume ': [vm-name]
+        '--help ':
+        '-h ':
+
+    'rsync ': [vm-name]
+        '--help ':
+        '-h ':
+
+    'rsync-auto ': [vm-name]
+        '--help ':
+        '-h ':
+
+    'share ':
+        '--disable-http ':               Disable publicly visible HTTP endpoint
+        '--domain ': VALUE               Domain the share name will be a subdomain of
+        '--http ': VALUE                 Local HTTP port to forward to
+        '--https ': VALUE                Local HTTPS port to forward to
+        '--name ': VALUE                 Specific name for the share
+        '--ssh ':           
+        '--ssh-no-password ': 
+        '--ssh-port ': PORT  
+        '--ssh-once ':  
+        '--help ':
+        '-h ':
+
+    'ssh ': [options] [name] [-- extra ssh args]
+        '--command ':
+        '-c ':
+        '--plain ':
+        '-p ':
+        '--help ':
+        '-h ':
+
+    'ssh-config ': [options] [name]
+        '--host ': NAME                  Name the host for the config
+        '--help ':
+        '-h ':
+
+    'status ': [name]
+        '--help ':
+        '-h ':
+
+    'suspend ': [name]
+        '--help ':
+        '-h ':
+
+    'up ': [options] [name]
+        '--provision ':             Enable or disable provisioning
+        '--no-provision ':             Enable or disable provisioning
+        '--provision-with ': x,y,z       Enable only certain provisioners, by type.
+        '--destroy-on-error ':      Destroy machine if any fatal error happens (default to true)
+        '--no-destroy-on-error ':      Destroy machine if any fatal error happens (default to true)
+        '--parallel ':              Enable or disable parallelism if provider supports it
+        '--no-parallel ':              Enable or disable parallelism if provider supports it
+        '--provider ': PROVIDER          Back the machine with a specific provider
+        '--help ':
+        '-h ':
+
+    'version ':
+        '--help ':
+        '-h ':
+
