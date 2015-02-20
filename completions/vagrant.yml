@@ -142,13 +142,13 @@
         '<Regex>.+ ': 
 
     'reload ': &reload [vm-name]
-        '--provision ':     *reload
-        '--no-provision ':  *reload
+        '--provision ':      *reload
+        '--no-provision ':   *reload
         '--provision-with ': 
-            '<Regex>.+ ':       *reload
+            '<Regex>.+ ':    *reload
         '--help ':
         '-h ':
-        '<Regex>.+ ':       *reload
+        '<Regex>.+ ':        *reload
 
     'resume ':
         '--help ':
