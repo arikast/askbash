@@ -141,7 +141,7 @@
         '-h ':
         '<Regex>.+ ': 
 
-    'reload ': &reload [vm-name]
+    'reload ': &reload 
         '--provision ':      *reload
         '--no-provision ':   *reload
         '--provision-with ': 
@@ -181,7 +181,7 @@
         '--help ':
         '-h ':
 
-    'ssh ': &ssh [options] [name] [-- extra ssh args]
+    'ssh ': &ssh 
         '--command ': *ssh
         '-c ':        *ssh
         '--plain ':   *ssh
