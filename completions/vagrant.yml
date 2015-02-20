@@ -99,7 +99,8 @@
             '<Regex>.+ ':   *package
         '--output ': 
             '<File> ':      *package
-        '--include ': &package_include        FILE...            Additional files to package with the box
+        '--include ': &package_include       
+            # FILE...            Additional files to package with the box
             '<File> ': *package_include
         '--vagrantfile ': 
             '<File> ':      *package
@@ -126,81 +127,99 @@
         '--help ':
         '-h ':
 
-    'provision ': [vm-name] [--provision-with x,y,z]
-        '--provision-with ': x,y,z       Enable only certain provisioners, by type.
-        '--parallel ':              Enable or disable parallelism if provider supports it.
-        '--no-parallel ':              Enable or disable parallelism if provider supports it.
+    'provision ': &provision 
+        '--parallel ':      *provision 
+        '--no-parallel ':   *provision 
+        '--provision-with ': 
+            '<Regex>.+ ':   *provision
+        '--help ':
+        '-h ':
+        '<Regex>.+ ':       *provision
+
+    'rdp ': 
+        '--help ':
+        '-h ':
+        '<Regex>.+ ': 
+
+    'reload ': &reload [vm-name]
+        '--provision ':     *reload
+        '--no-provision ':  *reload
+        '--provision-with ': 
+            '<Regex>.+ ':       *reload
+        '--help ':
+        '-h ':
+        '<Regex>.+ ':       *reload
+
+    'resume ':
+        '--help ':
+        '-h ':
+        '<Regex>.+ ': 
+
+    'rsync ': 
         '--help ':
         '-h ':
 
-    'rdp ': [options] [name] [-- extra args]
+    'rsync-auto ': 
         '--help ':
         '-h ':
 
-    'reload ': [vm-name]
-        '--provision ':             Enable or disable provisioning
-        '--no-provision ':             Enable or disable provisioning
-        '--provision-with ': x,y,z       Enable only certain provisioners, by type.
+    'share ': &share
+        '--disable-http ':           *share
+        '--domain ': 
+            '<Regex>.+ ':            *share
+        '--http ': 
+            '<Regex>([$].*)|(\d+) ': *share
+        '--https ': 
+            '<Regex>([$].*)|(\d+) ': *share
+        '--name ': 
+            '<Regex>.+ ':            *share
+        '--ssh ':                    *share
+        '--ssh-no-password ':        *share
+        '--ssh-port ': 
+            '<Regex>([$].*)|(\d+) ': *share
+        '--ssh-once ':               *share
         '--help ':
         '-h ':
 
-    'resume ': [vm-name]
+    'ssh ': &ssh [options] [name] [-- extra ssh args]
+        '--command ': *ssh
+        '-c ':        *ssh
+        '--plain ':   *ssh
+        '-p ':        *ssh
+        '<Regex>.+ ': 
         '--help ':
         '-h ':
 
-    'rsync ': [vm-name]
+    'ssh-config ': &ssh-config 
+        '--host ':    *ssh-config
+        '<Regex>.+ ': *ssh-config
         '--help ':
         '-h ':
 
-    'rsync-auto ': [vm-name]
+    'status ': 
+        '<Regex>.+ ': 
         '--help ':
         '-h ':
 
-    'share ':
-        '--disable-http ':               Disable publicly visible HTTP endpoint
-        '--domain ': VALUE               Domain the share name will be a subdomain of
-        '--http ': VALUE                 Local HTTP port to forward to
-        '--https ': VALUE                Local HTTPS port to forward to
-        '--name ': VALUE                 Specific name for the share
-        '--ssh ':           
-        '--ssh-no-password ': 
-        '--ssh-port ': PORT  
-        '--ssh-once ':  
+    'suspend ': 
+        '<Regex>.+ ': 
         '--help ':
         '-h ':
 
-    'ssh ': [options] [name] [-- extra ssh args]
-        '--command ':
-        '-c ':
-        '--plain ':
-        '-p ':
+    'up ': &up 
+        '--provision ':            *up
+        '--no-provision ':         *up
+        '--provision-with ': 
+            '<Regex>.+ ':          *up
+        '--destroy-on-error ':     *up
+        '--no-destroy-on-error ':  *up
+        '--parallel ':             *up
+        '--no-parallel ':          *up
+        '--provider ': 
+            '<Regex>.+ ':          *up
         '--help ':
         '-h ':
-
-    'ssh-config ': [options] [name]
-        '--host ': NAME                  Name the host for the config
-        '--help ':
-        '-h ':
-
-    'status ': [name]
-        '--help ':
-        '-h ':
-
-    'suspend ': [name]
-        '--help ':
-        '-h ':
-
-    'up ': [options] [name]
-        '--provision ':             Enable or disable provisioning
-        '--no-provision ':             Enable or disable provisioning
-        '--provision-with ': x,y,z       Enable only certain provisioners, by type.
-        '--destroy-on-error ':      Destroy machine if any fatal error happens (default to true)
-        '--no-destroy-on-error ':      Destroy machine if any fatal error happens (default to true)
-        '--parallel ':              Enable or disable parallelism if provider supports it
-        '--no-parallel ':              Enable or disable parallelism if provider supports it
-        '--provider ': PROVIDER          Back the machine with a specific provider
-        '--help ':
-        '-h ':
+        '<Regex>.+ ': 
 
     'version ':
         '--help ':
