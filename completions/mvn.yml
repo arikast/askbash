@@ -261,6 +261,10 @@
         'start ': *mvn
         'stop ': *mvn
         'undeploy ': *mvn
+    'jetty:' :
+        'run ': *mvn
+        'run-war ': *mvn
+        'config ': *mvn
     'surefire:':
         'help ': &surefire_help
             '-D':
