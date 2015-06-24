@@ -3,7 +3,7 @@ About
 
 Version: 0.6
 
-Askbash makes it easy to define your own bash autocompletions (that thing that happens when you type a command and hit the tab key once or twice).  It also comes with a number of autocompletions pre-installed, which you can find in the completions/ directory.  
+Askbash makes it easy to define your own bash autocompletions (that thing that happens when you type a command and hit the tab key once or twice) using an intuitive yaml syntax.  It also comes with a number of autocompletions pre-installed, which you can find in the completions/ directory.  
 
 This means when you type a program name which matches one of the completers, such as "mvn", that you can tab-complete arguments to the program on the command line based on the definitions found in the corresponding completion file (in this case mvn.yml).
 
