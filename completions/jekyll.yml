@@ -70,6 +70,14 @@
     'help ': &help
 
     'new ': &new
+        '--force ': *new
+        '--blank ': *new
+        '-h ':
+        '--help ':
+        '-v ': 
+        '--version ':
+        '-t ': *new
+        '--trace ': *new
 
     'serve ': &serve
         '--config ':
