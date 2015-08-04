@@ -4,7 +4,7 @@
 require_relative 'FileCompleter.rb'
 
 
-class CSVFilesCompleter < DynamicCompleter
+class FilesCompleter < DynamicCompleter
 
   def initialize(choiceTree)
     @tree = choiceTree
@@ -15,9 +15,9 @@ class CSVFilesCompleter < DynamicCompleter
     if ! token.nil? && token.length > 0 && token[-1] == " "
         return [ token ]
     end
-    toks = token.split(/,/)
+    toks = token.split(separator())
     if(toks.size > 1)
-        prefix = toks[0..-2].join ',' 
+        prefix = toks[0..-2].join(separator())
         prefix += ','
         tok = toks[-1]
         answer = @fc.deriveChoices(rawchoice, tok)
@@ -34,9 +34,13 @@ class CSVFilesCompleter < DynamicCompleter
   end
     
   def abbreviate(choice, token)
-    toks = choice.split(/,/)
+    toks = choice.split(separator())
     tok = toks[-1]
     File.basename(tok.strip)
+  end
+
+  def separator
+    ','
   end
 
 end
