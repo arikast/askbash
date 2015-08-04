@@ -12,8 +12,8 @@
         '<File> ': *jekyll
     '-d ' : *destination
     '--safe ': *jekyll
-    '--plugins': &plugins
-            PLUGINS_DIR1[,PLUGINS_DIR2[,...]]  Plugins directory (defaults to ./_plugins)
+    '--plugins ': &plugins
+        '<CSVFiles> ': *jekyll
     '-p ': *plugins 
     '--layouts ': 
         '<File> ': *jekyll
