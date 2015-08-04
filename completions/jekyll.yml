@@ -45,6 +45,18 @@
     'b ': *build
 
     'docs ': &docs
+        '--port ': &port
+            '<Regex>\d+ ': *docs
+        '-P ': *port
+        '--host ': &host
+            '<Regex>.+ ': *docs
+        '-H ': *host
+        '-h ':
+        '--help ':
+        '-v ': 
+        '--version ':
+        '-t ':
+        '--trace ':
 
     'doctor ': &doctor
     'hyde ': *doctor
