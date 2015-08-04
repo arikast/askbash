@@ -36,10 +36,10 @@
         '--quiet ': *build
         '-V '    : *build
         '--verbose ': *build
-        '-h ' : *build
-        '--help ': *build
-        '-v ' : *build
-        '--version ': *build
+        '-h ' : 
+        '--help ':
+        '-v ' : 
+        '--version ':
         '-t ' : *build
         '--trace ': *build
     'b ': *build
@@ -55,8 +55,8 @@
         '--help ':
         '-v ': 
         '--version ':
-        '-t ':
-        '--trace ':
+        '-t ': *docs
+        '--trace ': *docs
 
     'doctor ': &doctor
     'hyde ': *doctor
@@ -66,6 +66,48 @@
     'new ': &new
 
     'serve ': &serve
+        '--config ':
+            '<CSVFiles> ': *serve
+        '--future ': *serve  
+        '--limit_posts ':
+            '<Regex>\d+ ': *serve
+        '--no-watch ': *serve
+        '--watch ': *serve
+        '-w ': *serve
+        '--force_polling ': *serve
+        '--lsi ' : *serve
+        '--drafts ': *serve
+        '-D ': *serve
+        '--unpublished ': *serve
+        '-q ': *serve
+        '--quiet ': *serve
+        '-V '    : 
+        '--verbose ': 
+        '-h ' : 
+        '--help ': 
+        '-v ' : 
+        '--version ': 
+        '-t ' : *serve
+        '--trace ': *serve
+        '-B ' : *serve
+        '--detach ': *serve
+        '--port ': &serve-port
+            '<Regex>\d+ ': *serve
+        '-P ': *serve-port
+        '--host ': &serve-host
+            '<Regex>.+ ': *serve
+        '-H ': *serve-host
+        '--baseurl ': &baseurl
+            '<Regex>.+ ': *serve
+        '-b ': *baseurl 
+        '--skip-initial-build ': *serve 
+        '-h ':
+        '--help ':
+        '-v ': 
+        '--version ':
+        '-t ':
+        '--trace ': *serve
+
     'server ': *serve
     's ': *serve
 
