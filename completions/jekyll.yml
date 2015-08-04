@@ -19,6 +19,29 @@
         '<File> ': *jekyll
 
     'build ': &build
+        '--config ':
+            '<CSVFiles> ': *build
+        '--future ': *build  
+        '--limit_posts ':
+            '<Regex>\d+ ': *build
+        '--no-watch ': *build
+        '--watch ': *build
+        '-w ': *build
+        '--force_polling ': *build
+        '--lsi ' : *build
+        '--drafts ': *build
+        '-D ': *build
+        '--unpublished ': *build
+        '-q ': *build
+        '--quiet ': *build
+        '-V '    : *build
+        '--verbose ': *build
+        '-h ' : *build
+        '--help ': *build
+        '-v ' : *build
+        '--version ': *build
+        '-t ' : *build
+        '--trace ': *build
     'b ': *build
 
     'docs ': &docs
