@@ -17,4 +17,20 @@
     '-p ': *plugins 
     '--layouts ': 
         '<File> ': *jekyll
-    'serve ':
+
+    'build ': &build
+    'b ': *build
+
+    'docs ': &docs
+
+    'doctor ': &doctor
+    'hyde ': *doctor
+
+    'help ': &help
+
+    'new ': &new
+
+    'serve ': &serve
+    'server ': *serve
+    's ': *serve
+
