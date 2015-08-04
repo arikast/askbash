@@ -1,0 +1,20 @@
+'jekyll ': &jekyll
+    '--version ':
+    '-v ':
+    '--help ':
+    '-h ':
+    '--trace ': *jekyll 
+    '-t ':
+    '--source ': &source 
+        '<File> ': *jekyll
+    '-s ' : *source
+    '--destination ': &destination 
+        '<File> ': *jekyll
+    '-d ' : *destination
+    '--safe ': *jekyll
+    '--plugins': &plugins
+            PLUGINS_DIR1[,PLUGINS_DIR2[,...]]  Plugins directory (defaults to ./_plugins)
+    '-p ': *plugins 
+    '--layouts ': 
+        '<File> ': *jekyll
+    'serve ':
