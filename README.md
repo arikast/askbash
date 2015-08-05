@@ -28,12 +28,14 @@ How to use
 
 Your custom autocompletions are driven from a set of yaml files.  For example, suppose you have a fictitious command called "food".  You might create this completion in a file called food.yml:
 
+```yaml
 'food ':
     'fruit ':
         'orange ': 
         'banana ': 
     'veg ':
         'broccoli ':
+```
 
 After adding this file in ~/.askbash/completions/ and restarting your shell, you would now have autocompletion of "food " according to the static hierarchy defined in food.yml.  You could now type "food f" and hit tab to complete the text to "food fruit ".  You could then hit tab twice to get your next set of options, which would be "orange " and "banana ".
 
