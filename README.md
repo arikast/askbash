@@ -12,15 +12,21 @@ How to install
 
 - First make sure Ruby 2.0+ is installed (tested against 2.0, probably also works with 1.9).
 
-- add this to your .bashrc, substituting the real path to your askbash installation:
+- Add this to your .bashrc, substituting the real path to your askbash installation:
+
+```bash
     # export ASKBASH_DEBUG=1
     export ASKBASH_HOME=/your-actual-path/askbash
     source $ASKBASH_HOME/bashrc-generator.bash
+```
 
-- restart or source your shell for it to take effect. 
-    You will now have a variable called $ASKBASH_HOME defined, and any completions found in the following places will be active (first match found wins)
+- Restart or source your shell for it to take effect. 
+  You will now have a variable called $ASKBASH_HOME defined, and any completions found in the following places will be active (first match found wins)
+
+```bash
         ~/.askbash/completions/*yml
         $ASKBASH_HOME/completions/*.yml
+```
 
 
 How to use
@@ -41,6 +47,7 @@ After adding this file in ~/.askbash/completions/ and restarting your shell, you
 
 Here we explicitly add spaces to our choices because we want a space to be added when these words complete, but you don't have to do this.  You could also have a "multi-part" completion by not putting a space at the end:
 
+```yaml
 'food ':
     'fruit ':
         'orange ': 
@@ -50,11 +57,13 @@ Here we explicitly add spaces to our choices because we want a space to be added
             '=false ':
     'veg ':
         'broccoli ':
+```
 
 Here the --seedless does not end with a space because the intention is to continue with =true or =false without any spaces in between.
 
 Sometimes our intent is to select many options, for example "food fruit orange --seedless=true banana".  In this case, we use yaml's "reference" syntax to loop back to another node like this:
 
+```yaml
 'food ':
     'fruit ': &fruit
         'orange ': *fruit
@@ -64,6 +73,7 @@ Sometimes our intent is to select many options, for example "food fruit orange -
             '=false ': *fruit
     'veg ':
         'broccoli ':
+```
 
 This "reference" syntax consists of an arbitrarily named anchor (here it is &fruit) followed by one or more references to it (in this case *fruit). Note that all nodes end with colons, even leaf nodes, but references still occur after the colon. 
 
@@ -71,6 +81,7 @@ This "reference" syntax consists of an arbitrarily named anchor (here it is &fru
 
 Sometimes aspects of your completion hierarchy might be dynamic.  For instance, perhaps in addition to =true and =false we also want to allow an arbitrary value here.  In this case you'd use a Regex completer like this: 
 
+```yaml
 'food ':
     'fruit ': &fruit
         'orange ': 
@@ -81,6 +92,7 @@ Sometimes aspects of your completion hierarchy might be dynamic.  For instance, 
             '<Regex>.+ ': *fruit
     'veg ':
         'broccoli ':
+```
 
 There are many dynamic completers to do all sorts of things such as fill in a filename or list a running proc or execute an arbitrary bash command.  Take a look at the $ASKBASH_HOME/lib/completers/ to see the available completers.  Any of these completers can be used in your yml configuration; to use one, just use it in your *.yml in the same way we've used the Regex above and drop the "Completer.rb" suffix when refering to it.  So to use FileCompleter.rb for instance, you would specify <File> in your *.yml config.  
 
@@ -93,7 +105,9 @@ Writing your own dynamic completer
 See lib/completers/*.rb for examples of writing your own dynamic completer.  You basically just need to extend a class and implement a few methods.
 You will also likely find it useful to enable debugging output, which can be done by setting an environment variable in your .bashrc like this:
 
+```bash
     export ASKBASH_DEBUG=1
+```
 
 Then after restarting the shell, you'll find copious debugging info logged to $ASKBASH_HOME/askbash.log
 
