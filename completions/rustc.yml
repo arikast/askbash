@@ -1,8 +1,7 @@
 "rustc ": &rustc
-    "-h ": 
+    "--help ": &help
         "-v ":
-    "--help ": 
-        "-v ":
+    "-h ": *help
     "-V ":
     "--version ":  
     "--cfg ":
