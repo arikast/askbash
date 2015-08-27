@@ -1,0 +1,98 @@
+"cargo ": &cargo
+    "-h ": 
+    "--help ": 
+    "-V ":
+    "--version ":  
+    "--list ":
+    "--verbose ": *cargo
+    "-v ": *cargo
+    "--quiet ": *cargo
+    "-q ": *cargo
+
+    "build ": &build
+        "-h ": 
+        "--help ": 
+        "--package ": &package 
+            '<Regex>.+ ': *build
+        "-p ": *package
+        '--jobs ': &jobs
+            '<Regex>([$].*)|(\d+) ': *build
+        '-j ': *jobs 
+        '--lib ': *build
+        '--bin ': 
+            '<Regex>.+ ': *build
+        '--example ': 
+            '<Regex>.+ ': *build
+        '--test ': 
+            '<Regex>.+ ': *build
+        '--bench ': 
+            '<Regex>.+ ': *build
+        '--release ': *build
+        '--features ':
+            '<Regex>.+ ': *build
+        '--no-default-features ': *build
+        "--manifest-path ":
+            '<File> ': *build
+        "--target ":
+            "TRIPLE ": *build 
+        "--verbose ": *build
+        "-v ": *build
+        "--quiet ": *build
+        "-q ": *build
+
+    "clean ": &clean
+        "-h ": 
+        "--help ": 
+        "--package ": &clean_package 
+            '<Regex>.+ ': *clean
+        "-p ": *clean_package
+        "--manifest-path ":
+            '<File> ': *clean
+        "--target ":
+            "TRIPLE ": *clean
+        "--verbose ": *clean
+        "-v ": *clean
+        "--quiet ": *clean
+        "-q ": *clean
+            
+    "doc ": &doc
+        "-h ": 
+        "--help ": 
+        "--open ": *doc
+        '--features ':
+            '<Regex>.+ ': *doc
+        '--jobs ': &doc_jobs
+            '<Regex>([$].*)|(\d+) ': *doc
+        '-j ': *doc_jobs 
+        '--no-default-features ': *doc
+        '--no-deps ': *doc
+        "--manifest-path ":
+            '<File> ': *doc
+        "--package ": &doc_package
+            '<Regex>.+ ': *doc
+        "-p ": *doc_package
+        "--target ":
+            "TRIPLE ": *doc 
+        "--verbose ": *doc
+        "-v ": *doc
+        "--quiet ": *doc
+        "-q ": *doc
+
+    "new ": &new
+        "-h ": 
+        "--help ": 
+    "run ": &run
+        "-h ": 
+        "--help ": 
+    "test ": &test
+        "-h ": 
+        "--help ": 
+    "bench ": &bench
+        "-h ": 
+        "--help ": 
+    "update ": &update
+        "-h ": 
+        "--help ": 
+    "search ": &search
+        "-h ": 
+        "--help ": 
