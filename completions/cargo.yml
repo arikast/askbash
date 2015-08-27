@@ -119,15 +119,87 @@
     "test ": &test
         "-h ": 
         "--help ": 
+        '--lib ': *test
+        '--bin ': 
+            '<Regex>.+ ': *test
+        '--example ': 
+            '<Regex>.+ ': *test
+        '--test ': 
+            '<Regex>.+ ': *test
+        '--bench ': 
+            '<Regex>.+ ': *test
+        '--no-run ': *test
+        '--jobs ': &run_jobs
+            '<Regex>([$].*)|(\d+) ': *run
+        '-j ': *run_jobs 
+        '--features ':
+            '<Regex>.+ ': *test
+        '--no-default-features ': *test
+        "--manifest-path ":
+            '<File> ': *test
+        "--package ": &test_package 
+            '<Regex>.+ ': *test
+        "-p ": *test_package
+        '--release ': *test
+        "--target ":
+            "TRIPLE ": *test 
+        "--verbose ": *test
+        "-v ": *test
+        "--quiet ": *test
+        "-q ": *test
 
     "bench ": &bench
         "-h ": 
         "--help ": 
+        '--lib ': *bench
+        '--bin ': 
+            '<Regex>.+ ': *bench
+        '--example ': 
+            '<Regex>.+ ': *bench
+        '--test ': 
+            '<Regex>.+ ': *bench
+        '--bench ': 
+            '<Regex>.+ ': *bench
+        '--no-run ': *bench
+        '--jobs ': &run_jobs
+            '<Regex>([$].*)|(\d+) ': *run
+        '-j ': *run_jobs 
+        '--features ':
+            '<Regex>.+ ': *bench
+        '--no-default-features ': *bench
+        "--manifest-path ":
+            '<File> ': *bench
+        "--package ": &bench_package 
+            '<Regex>.+ ': *bench
+        "-p ": *bench_package
+        "--target ":
+            "TRIPLE ": *bench 
+        "--verbose ": *bench
+        "-v ": *bench
+        "--quiet ": *bench
+        "-q ": *bench
 
     "update ": &update
         "-h ": 
         "--help ": 
+        '--aggressive ': *update  
+        '--precise ':
+            '<Regex>.+ ': *update
+        "--package ": &update_package 
+            '<Regex>.+ ': *update
+        "-p ": *update_package
+        "--verbose ": *update
+        "-v ": *update
+        "--quiet ": *update
+        "-q ": *update
 
     "search ": &search
         "-h ": 
         "--help ": 
+        '--host ':
+            '<Regex>.+ ': *search
+        "--verbose ": *search
+        "-v ": *search
+        "--quiet ": *search
+        "-q ": *search
+        '<Regex>.+ ': 
