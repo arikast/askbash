@@ -81,18 +81,53 @@
     "new ": &new
         "-h ": 
         "--help ": 
+        "--vcs ":
+            "git ": *new 
+            "hg ": *new 
+            "none ": *new 
+        "--bin ": *new
+        "--name ":
+            '<Regex>.+ ': *new
+        "--verbose ": *new
+        "-v ": *new
+        "--quiet ": *new
+        "-q ": *new
+
     "run ": &run
         "-h ": 
         "--help ": 
+        '--bin ': 
+            '<Regex>.+ ': *run
+        '--example ': 
+            '<Regex>.+ ': *run
+        '--jobs ': &run_jobs
+            '<Regex>([$].*)|(\d+) ': *run
+        '-j ': *run_jobs 
+        '--release ': *run
+        '--features ':
+            '<Regex>.+ ': *run
+        '--no-default-features ': *run
+        "--manifest-path ":
+            '<File> ': *run
+        "--target ":
+            "TRIPLE ": *run 
+        "--verbose ": *run
+        "-v ": *run
+        "--quiet ": *run
+        "-q ": *run
+
     "test ": &test
         "-h ": 
         "--help ": 
+
     "bench ": &bench
         "-h ": 
         "--help ": 
+
     "update ": &update
         "-h ": 
         "--help ": 
+
     "search ": &search
         "-h ": 
         "--help ": 
