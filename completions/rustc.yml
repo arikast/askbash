@@ -1,0 +1,86 @@
+"rustc ": &rustc
+    "-h ": 
+        "-v ":
+    "--help ": 
+        "-v ":
+    "-V ":
+    "--version ":  
+    "--cfg ":
+        '<Regex>.+ ': *rustc
+    "-L ": &L
+        "KIND=": *L
+        '<File> ': *rustc
+    "-l ": &l
+        "KIND=": *l
+        "dylib ": *rustc
+        "static ": *rustc
+        "framework ": *rustc
+    "--crate-type ":
+        "bin " : *rustc
+        "lib " : *rustc
+        "rlib " : *rustc
+        "dylib " : *rustc
+        "staticlib " : *rustc
+    "--crate-name ":
+        '<Regex>.+ ': *rustc
+    "--emit ": &emit
+        "asm" : 
+            ",": *emit
+            " ": *rustc
+        "llvm-bc" : 
+            ",": *emit
+            " ": *rustc
+        "llvm-ir" : 
+            ",": *emit
+            " ": *rustc
+        "obj" : 
+            ",": *emit
+            " ": *rustc
+        "link" : 
+            ",": *emit
+            " ": *rustc
+        "dep-info" : 
+            ",": *emit
+            " ": *rustc
+    "--print ": &print
+        "crate-name" : 
+            ",": *print
+            " ": *rustc
+        "file-names" : 
+            ",": *print
+            " ": *rustc
+        "sysroot" : 
+            ",": *print
+            " ": *rustc
+    "-g ": *rustc
+    "-O ": *rustc
+    "-o ":
+        '<File> ': *rustc
+    "--out-dir ":
+        '<File> ': *rustc
+    "--explain ": *rustc
+    "--test ": *rustc  
+    "--target ":
+        "TRIPLE ": *rustc 
+    "--warn ": &warn
+        "help ":
+        '<Regex>.+ ': *rustc
+    "-W ": *warn
+    "--allow ": &allow
+        '<Regex>.+ ': *rustc
+    "-A ": *allow
+    "--deny ": &deny
+        '<Regex>.+ ': *rustc
+    "-D ": *deny
+    "--forbid ": &forbid
+        '<Regex>.+ ': *rustc
+    "-F ": *forbid
+    "--codegen ": &codegen
+        "help ":
+        '<Regex>.+ ': *rustc
+    "-C ": *codegen
+    "-v ": *rustc
+    "--verbose ": *rustc
+    "-Z ":
+        "help ": 
+
