@@ -75,7 +75,7 @@ Sometimes our intent is to select many options, for example "food fruit orange -
            'broccoli ':
 ```
 
-This "reference" syntax consists of an arbitrarily named anchor (here it is &fruit) followed by one or more references to it (in this case *fruit). Note that all nodes end with colons, even leaf nodes, but references still occur after the colon. 
+This "reference" syntax consists of an arbitrarily named anchor (here it is &fruit) followed by one or more references to it (in this case *fruit). Note how all nodes end with colons, but references occur after the colon. 
 
 ### Dynamic completers
 
@@ -94,7 +94,7 @@ Sometimes aspects of your completion hierarchy might be dynamic.  For instance, 
            'broccoli ':
 ```
 
-There are many dynamic completers to do all sorts of things such as fill in a filename or list a running proc or execute an arbitrary bash command.  Take a look at the $ASKBASH_HOME/lib/completers/ to see the available completers.  Any of these completers can be used in your yml configuration; to use one, just use it in your *.yml in the same way we've used the Regex above and drop the "Completer.rb" suffix when refering to it.  So to use FileCompleter.rb for instance, you would specify <File> in your *.yml config.  
+There are many dynamic completers to do all sorts of things such as fill in a filename or list a running proc or execute an arbitrary bash command.  Take a look at the $ASKBASH_HOME/lib/completers/ to see the available completers.  Any of these completers can be used in your yml configuration; to use one, just use it in your *.yml in the same way we've used the Regex above and drop the "Completer.rb" suffix when refering to it.  So to use FileCompleter.rb for instance, you would specify `<File>` in your *.yml config.  
 
 You can also of course easily write your own completer; just place it in lib/completers and then use it like any other.
 
