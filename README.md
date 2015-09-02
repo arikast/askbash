@@ -112,8 +112,7 @@ You will also likely find it useful to enable debugging output, which can be don
 Then after restarting the shell, you'll find copious debugging info logged to $ASKBASH_HOME/askbash.log
 
 
-Some nit-picky syntax/naming rules which MUST be followed
-==========================================================
+### Some nit-picky syntax/naming rules which MUST be followed
 
 - If your Ruby completion class is called Abc, then it must be defined in a class called AbcCompleter whose definition can be found in $ASKBASH_HOME/lib/completers/AbcCompleter.rb
 
