@@ -20,7 +20,7 @@ How to install
    source $ASKBASH_HOME/bashrc-generator.bash
 ```
 
-- Restart or source your shell for it to take effect. 
+- Restart or source your shell for it to take effect.
   You will now have a variable called $ASKBASH_HOME defined, and any completions found in the following places will be active (first match found wins)
 
 ```bash
@@ -37,8 +37,8 @@ Your custom autocompletions are driven from a set of yaml files.  For example, s
 ```yaml
    'food ':
        'fruit ':
-           'orange ': 
-           'banana ': 
+           'orange ':
+           'banana ':
        'veg ':
            'broccoli ':
 ```
@@ -50,9 +50,9 @@ Here we explicitly add spaces to our choices because we want a space to be added
 ```yaml
    'food ':
        'fruit ':
-           'orange ': 
-           'banana ': 
-           '--seedless': 
+           'orange ':
+           'banana ':
+           '--seedless':
                '=true ':
                '=false ':
        'veg ':
@@ -68,25 +68,25 @@ Sometimes our intent is to select many options, for example "food fruit orange -
        'fruit ': &fruit
            'orange ': *fruit
            'banana ': *fruit
-           '--seedless': 
+           '--seedless':
                '=true ': *fruit
                '=false ': *fruit
        'veg ':
            'broccoli ':
 ```
 
-This "reference" syntax consists of an arbitrarily named anchor (here it is &fruit) followed by one or more references to it (in this case *fruit). Note how all nodes end with colons, but references occur after the colon. 
+This "reference" syntax consists of an arbitrarily named anchor (here it is &fruit) followed by one or more references to it (in this case *fruit). Note how all nodes end with colons, but references occur after the colon.
 
 ### Dynamic completers
 
-Sometimes aspects of your completion hierarchy might be dynamic.  For instance, perhaps in addition to =true and =false we also want to allow an arbitrary value here.  In this case you'd use a Regex completer like this: 
+Sometimes aspects of your completion hierarchy might be dynamic.  For instance, perhaps in addition to =true and =false we also want to allow an arbitrary value here.  In this case you'd use a Regex completer like this:
 
 ```yaml
    'food ':
        'fruit ': &fruit
-           'orange ': 
-           'banana ': 
-           '--seedless': 
+           'orange ':
+           'banana ':
+           '--seedless':
                '=true ': *fruit
                '=false ': *fruit
                '<Regex>.+ ': *fruit
@@ -123,7 +123,7 @@ Some nit-picky syntax/naming rules which MUST be followed
 
     * The top level node inside foobar.yml must be 'foobar '
 
-- If you want spaces after your completions, then you need to quote them and include the space as part of the completion, eg: 
+- If you want spaces after your completions, then you need to quote them and include the space as part of the completion, eg:
     '-r ':
 
 - As seen above, all completions must end with a colon, with the exception of references which occur after the colon (but the colon must still be present!)
@@ -132,6 +132,4 @@ Some nit-picky syntax/naming rules which MUST be followed
 Examples
 =========
 
-See completions/*.yml as well as test/completions/*yml for examples
-
-
+See `completions/*.yml` as well as `test/completions/*yml` for examples
