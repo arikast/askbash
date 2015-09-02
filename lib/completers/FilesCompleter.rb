@@ -1,5 +1,5 @@
 ###################
-### this completer is for completing a local file path
+### this completer is for completing one or more local file paths separated by an arbitrary token separator
 ###################
 require_relative 'FileCompleter.rb'
 
