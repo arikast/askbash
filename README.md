@@ -16,7 +16,7 @@ Note: these instructions are written using markdown.  If you are reading this fi
 
 - Download or clone this repo.  This will be your Askbash installation.
 
-- Add this to your .bashrc, substituting the real path to your Askbash installation:
+- Add this to your .bashrc (or .bash_profile as the case may be), substituting the real path to your Askbash installation:
 
 ```bash
    # export ASKBASH_DEBUG=1
@@ -107,7 +107,7 @@ Writing your own dynamic completer
 ==================================
 
 See lib/completers/*.rb for examples of writing your own dynamic completer.  You basically just need to extend a class and implement a few methods.
-You will also likely find it useful to enable debugging output, which can be done by setting an environment variable in your .bashrc like this:
+You will also likely find it useful to enable debugging output, which can be done by setting an environment variable in your .bashrc (or .bash_profile as the case may be) like this:
 
 ```bash
    export ASKBASH_DEBUG=1
