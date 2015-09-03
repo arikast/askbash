@@ -10,7 +10,11 @@ This means when you type a program name which matches one of the completers, suc
 How to install
 ==============
 
+Note: these instructions are written using markdown.  If you are reading this file "raw" then you'll see backtick markings around the code snippets -- these backticks are formatting and are not part of the code!
+
 - First make sure Ruby 2.0+ is installed (tested against 2.0, probably also works with 1.9).
+
+- Download or clone this repo.  This will be your askbash installation.
 
 - Add this to your .bashrc, substituting the real path to your askbash installation:
 
