@@ -14,9 +14,9 @@ Note: these instructions are written using markdown.  If you are reading this fi
 
 - First make sure Ruby 2.0+ is installed (tested against 2.0, probably also works with 1.9).
 
-- Download or clone this repo.  This will be your askbash installation.
+- Download or clone this repo.  This will be your Askbash installation.
 
-- Add this to your .bashrc, substituting the real path to your askbash installation:
+- Add this to your .bashrc, substituting the real path to your Askbash installation:
 
 ```bash
    # export ASKBASH_DEBUG=1
