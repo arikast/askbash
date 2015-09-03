@@ -118,9 +118,9 @@ Then after restarting the shell, you'll find copious debugging info logged to $A
 
 ### Some nit-picky syntax/naming rules which MUST be followed
 
-- If your Ruby completion class is called Abc, then it must be defined in a class called AbcCompleter whose definition can be found in $ASKBASH_HOME/lib/completers/AbcCompleter.rb
+- If your Ruby completion class is called `<Abc>` in the .yml config, then it must be defined in a Ruby class called AbcCompleter whose definition can be found in $ASKBASH_HOME/lib/completers/AbcCompleter.rb
 
-- If the command you are autocompleting is called foobar, then:
+- If the Bash command you are autocompleting is called foobar, then:
 
     * You must define its completions in $ASKBASH_HOME/completions/foobar.yml or ~/.askbash/completion/foobar.yml
 
