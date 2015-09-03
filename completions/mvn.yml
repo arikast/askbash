@@ -111,7 +111,7 @@
 
     '-pl ': &pl
         '<Regex>.+ ': *mvn
-    '--projects <arg> ': *pl
+    '--projects ': *pl
 
     '-q ': *mvn
     '--quiet ': *mvn
