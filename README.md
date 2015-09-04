@@ -28,7 +28,7 @@ Note: these instructions are written using markdown.  If you are reading this fi
   You will now have a variable called $ASKBASH_HOME defined, and any completions found in the following places will be active (first match found wins)
 
 ```bash
-   ~/.askbash/completions/*yml
+   ~/.askbash/completions/*.yml
    $ASKBASH_HOME/completions/*.yml
 ```
 
