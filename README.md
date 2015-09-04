@@ -1,7 +1,7 @@
 About
 =====
 
-Version: 0.6.1
+Version: 0.6.2
 
 Askbash makes it easy to define your own bash autocompletions (that thing that happens when you type a command and hit the tab key once or twice) using an intuitive yaml syntax.  It also comes with a number of autocompletions pre-installed, which you can find in the completions/ directory.  
 
