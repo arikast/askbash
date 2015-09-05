@@ -240,7 +240,7 @@ class ChoiceTree
         node.keys.each {|candidate|
             compltr = completer candidate
             nodeContent = compltr.class.content(candidate)
-            log "deriving all choices for token '#{token}' using Completer #{compltr} having node content #{nodeContent}"
+            log "deriving all choices for token '#{token}' having node content #{nodeContent}"
             addCandidates = compltr.deriveChoices(nodeContent, token)
 
             log "about to select matches for '#{token}' from #{addCandidates}"

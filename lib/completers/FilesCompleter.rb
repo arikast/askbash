@@ -43,7 +43,7 @@ class FilesCompleter < DynamicCompleter
     if rawChoice.nil? || rawChoice.length == 0
         return ','
     else
-        return rawChoice
+        return rawChoice.strip
     end
   end
 

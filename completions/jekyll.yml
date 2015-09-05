@@ -13,14 +13,14 @@
     '-d ' : *destination
     '--safe ': *jekyll
     '--plugins ': &plugins
-        '<FilesCSVComma> ': *jekyll
+        '<Files>, ': *jekyll
     '-p ': *plugins 
     '--layouts ': 
         '<File> ': *jekyll
 
     'build ': &build
         '--config ':
-            '<FilesCSVComma> ': *build
+            '<Files>, ': *build
         '--future ': *build  
         '--limit_posts ':
             '<Regex>\d+ ': *build
@@ -81,7 +81,7 @@
 
     'serve ': &serve
         '--config ':
-            '<FilesCSVComma> ': *serve
+            '<Files>, ': *serve
         '--future ': *serve  
         '--limit_posts ':
             '<Regex>\d+ ': *serve
