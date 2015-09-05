@@ -261,7 +261,9 @@ class ChoiceTree
     log "derived choices to #{answer}"
 
     # when there are multiple continuations, we prefer to show them abbreviated when possible
-    # but theres a special case when all of the continuations share any common prefix then bash immediately prints it, thus in that case we need to show the full form
+    # but theres a special case when all of the continuation choices share any common prefix then bash immediately prints the common prefix 
+    # thus in that case we need to show the full form so that this behavior does not wipe out what we've typed so far
+    # (in other words, we must accept that this behavior will occur so we therefore tack on what's been typed already to each choice so that it gets preserved)
     if answer.length > 1 && ! shareACommonPrefix?(abbrevAnswer)
         answer = abbrevAnswer
         log "abbreviated to #{answer}"
