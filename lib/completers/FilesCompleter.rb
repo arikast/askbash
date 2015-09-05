@@ -15,9 +15,9 @@ class FilesCompleter < DynamicCompleter
     if ! token.nil? && token.length > 0 && token[-1] == " "
         return [ token ]
     end
-    toks = token.split(separator())
+    toks = token.split(separator(rawChoice))
     if(toks.size > 1)
-        prefix = toks[0..-2].join(separator())
+        prefix = toks[0..-2].join(separator(rawChoice))
         prefix += ','
         tok = toks[-1]
         answer = @fc.deriveChoices(rawChoice, tok)
@@ -34,13 +34,17 @@ class FilesCompleter < DynamicCompleter
   end
     
   def abbreviate(rawChoice, choice, token)
-    toks = choice.split(separator())
+    toks = choice.split(separator(rawChoice))
     tok = toks[-1]
     File.basename(tok.strip)
   end
 
-  def separator
-    ','
+  def separator(rawChoice)
+    if rawChoice.nil? || rawChoice.length == 0
+        return ','
+    else
+        return rawChoice
+    end
   end
 
 end
