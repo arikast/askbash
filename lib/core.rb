@@ -28,6 +28,8 @@ class AbstractCompleter
     [choice]
   end
 
+  # this method is used when tab is hit twice and multiple possible continuations are shown -- in this case it's nicer to display just the continuation rather than the entire full form choice
+  # for example if you've typed "fo" and the possible continuations are ["food", "form"] then on screen its nicer to just show ["od", "rm"]
   def abbreviate(choice, token)
     choice
   end
@@ -91,6 +93,9 @@ class AbstractCompleter
     end
   end
 
+  # this returns the "data" of a choice -- for a normal static choice its the choice itself, but for a dynamic choice it's everything after the <>
+  # so if the choice node is "fruit " this will return "fruit "
+  # but if the choice node is "<MyThing>123 " then this returns "123"
   def self.content(rawchoice)
     if match = rawchoice.match(/^<([A-Z].*)>(.*)\s*$/i)
         return match.captures[1]
@@ -148,6 +153,7 @@ class ChoiceTree
 
   # returns nil when not consumed, otherwise returns a string indicating what remained after consumption (will typically be an empty string, indicating that the token was fully consumed)
   # TODO: consider just always returning what remains, so instead of nil you'd return the full token to indicate non-consumption
+  # purpose: every time you hit tab to invoke auto-completion, this ruby script is invoked from scratch, so this program essentially must operate statelessly.  Thus each time you must walk through the yaml completion tree from the beginning to re-figure out where in the tree you currently are.  This method is used as part of that tree navigation, so basically we start from root node and then recursively look for subnodes that can consume our token stack.  Once we cant consume any more then we've reached the current node and we then switch over to the matchingCandidates method to suggest to the user potential continuations from here 
   def consume?(token)
     log "trying to consume '#{token}'"
    
@@ -221,6 +227,7 @@ class ChoiceTree
     return answer
   end
 
+  # this is used to generate potential continuations for the text you've typed so far
   def matchingCandidates(token)
     candidates(@currentNode, token)
   end
@@ -232,7 +239,7 @@ class ChoiceTree
         
         node.keys.each {|c|
             comp = completer c
-            log "deriveing all choices for token '#{token}'"
+            log "deriving all choices for token '#{token}'"
             addition = comp.deriveChoices(comp.class.content(c), token)
 
             log "about to select matches for '#{token}' from #{addition}"
@@ -253,7 +260,8 @@ class ChoiceTree
     end
     log "derived choices to #{answer}"
 
-    # theres a special case when all of the answers share any common prefix then bash immediately prints it, thus in this case we need to show the full form
+    # when there are multiple continuations, we prefer to show them abbreviated when possible
+    # but theres a special case when all of the continuations share any common prefix then bash immediately prints it, thus in that case we need to show the full form
     if answer.length > 1 && ! shareACommonPrefix?(abbrevAnswer)
         answer = abbrevAnswer
         log "abbreviated to #{answer}"
@@ -288,6 +296,7 @@ class ChoiceTree
     return true
   end
 
+  # fetches an appropriate Completer subclass to interpret the given choice node
   def completer(choice)
     if choice.nil?
       completerFactory(StaticCompleter.name)
@@ -329,6 +338,7 @@ class AutoCompleter
     @tokenIndex = 0
   end
 
+  # the main processing loop for the whole program
   def parse
     @input.reverse!
     loop do
