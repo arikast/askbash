@@ -28,8 +28,8 @@ class AbstractCompleter
     [choice]
   end
 
-  # this method is used when tab is hit twice and multiple possible continuations are shown -- in this case it's nicer to display just the continuation rather than the entire full form choice
-  # for example if you've typed "fo" and the possible continuations are ["food", "form"] then on screen its nicer to just show ["od", "rm"]
+  # this method is used for long completions when tab is hit twice and multiple possible continuations are shown -- in this case it's nicer to display just the continuation rather than the entire full form choice
+  # for example if you've typed "/usr/bin/m" and the possible continuations are ["/usr/bin/mysql", "/usr/bin/mongodb"] then on screen its nicer to just show ["mysql", "mongodb"]
   def abbreviate(choice, token)
     choice
   end
