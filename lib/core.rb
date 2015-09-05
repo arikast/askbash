@@ -30,7 +30,7 @@ class AbstractCompleter
 
   # this method is used for long completions when tab is hit twice and multiple possible continuations are shown -- in this case it's nicer to display just the continuation rather than the entire full form choice
   # for example if you've typed "/usr/bin/m" and the possible continuations are ["/usr/bin/mysql", "/usr/bin/mongodb"] then on screen its nicer to just show ["mysql", "mongodb"]
-  def abbreviate(choice, token)
+  def abbreviate(rawChoice, choice, token)
     choice
   end
 
@@ -81,14 +81,14 @@ class AbstractCompleter
     self.class.name == self.parseTypeName(choice) 
   end
 
-  def self.parseTypeName(rawchoice)
-    if (! rawchoice.nil?) && (match = rawchoice.match(/^<([A-Z].*)>(.*)\s*$/i))
+  def self.parseTypeName(rawChoice)
+    if (! rawChoice.nil?) && (match = rawChoice.match(/^<([A-Z].*)>(.*)\s*$/i))
         answer = "#{match.captures[0]}Completer"
-        log "#{rawchoice} is of type #{answer}"
+        log "#{rawChoice} is of type #{answer}"
         return answer
     else
         answer = StaticCompleter.name
-        log "#{rawchoice} defaulted to type #{answer}"
+        log "#{rawChoice} defaulted to type #{answer}"
         return answer
     end
   end
@@ -96,11 +96,11 @@ class AbstractCompleter
   # this returns the "data" of a choice -- for a normal static choice its the choice itself, but for a dynamic choice it's everything after the <>
   # so if the choice node is "fruit " this will return "fruit "
   # but if the choice node is "<MyThing>123 " then this returns "123"
-  def self.content(rawchoice)
-    if match = rawchoice.match(/^<([A-Z].*)>(.*)\s*$/i)
+  def self.content(rawChoice)
+    if match = rawChoice.match(/^<([A-Z].*)>(.*)\s*$/i)
         return match.captures[1]
     else
-        return rawchoice 
+        return rawChoice 
     end
   end
 
@@ -237,23 +237,23 @@ class ChoiceTree
     abbrevAnswer = []
     if node.kind_of?(Hash) && ! node.keys.nil?
         
-        node.keys.each {|c|
-            comp = completer c
-            log "deriving all choices for token '#{token}'"
-            addition = comp.deriveChoices(comp.class.content(c), token)
+        node.keys.each {|candidate|
+            compltr = completer candidate
+            nodeContent = compltr.class.content(candidate)
+            log "deriving all choices for token '#{token}' using Completer #{compltr} having node content #{nodeContent}"
+            addCandidates = compltr.deriveChoices(nodeContent, token)
 
-            log "about to select matches for '#{token}' from #{addition}"
-            addition.select! {|c|
-               comp.isChoicePotentialCompletion(c, token)
+            log "about to select matches for '#{token}' from #{addCandidates}"
+            addCandidates.select! {|c|
+               compltr.isChoicePotentialCompletion(c, token)
             }
-            answer.concat addition
+            answer.concat addCandidates
 
-            addition.each{|c|
-                abb = comp.abbreviate(c, token)
-                if abb.nil?
-                    next
-                else
-                    abbrevAnswer.push abb
+            #now that we've generated the matching candidates, lets also create abbreviations for them
+            addCandidates.each{|c|
+                abbr = compltr.abbreviate(nodeContent, c, token)
+                if ! abbr.nil?
+                    abbrevAnswer.push abbr
                 end
             }
         }

@@ -3,7 +3,7 @@
 ###################
 
 class FileCompleter < DynamicCompleter
-  def deriveChoices(rawchoice, token)
+  def deriveChoices(rawChoice, token)
     if ! token.nil? && token.length > 0 && token[-1] == " "
         return [ token ]
     end
@@ -29,7 +29,7 @@ class FileCompleter < DynamicCompleter
     return answer
   end
 
-  def abbreviate(choice, token)
+  def abbreviate(rawChoice, choice, token)
     File.basename(choice.strip)
   end
 

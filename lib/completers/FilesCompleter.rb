@@ -11,7 +11,7 @@ class FilesCompleter < DynamicCompleter
     @fc = FileCompleter.new(choiceTree)
   end
 
-  def deriveChoices(rawchoice, token)
+  def deriveChoices(rawChoice, token)
     if ! token.nil? && token.length > 0 && token[-1] == " "
         return [ token ]
     end
@@ -20,20 +20,20 @@ class FilesCompleter < DynamicCompleter
         prefix = toks[0..-2].join(separator())
         prefix += ','
         tok = toks[-1]
-        answer = @fc.deriveChoices(rawchoice, tok)
+        answer = @fc.deriveChoices(rawChoice, tok)
         if(!answer.nil?)
             answer.map! {|a|
                prefix + a 
             }
         end
     else
-        answer = @fc.deriveChoices(rawchoice, token)
+        answer = @fc.deriveChoices(rawChoice, token)
     end
     
     return answer
   end
     
-  def abbreviate(choice, token)
+  def abbreviate(rawChoice, choice, token)
     toks = choice.split(separator())
     tok = toks[-1]
     File.basename(tok.strip)
