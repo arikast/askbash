@@ -15,10 +15,11 @@ class FilesCompleter < DynamicCompleter
     if ! token.nil? && token.length > 0 && token[-1] == " "
         return [ token ]
     end
-    toks = token.split(separator(rawChoice))
+    sep = separator(rawChoice)
+    toks = token.split(sep)
     if(toks.size > 1)
-        prefix = toks[0..-2].join(separator(rawChoice))
-        prefix += ','
+        prefix = toks[0..-2].join(sep)
+        prefix += sep 
         tok = toks[-1]
         answer = @fc.deriveChoices(rawChoice, tok)
         if(!answer.nil?)
