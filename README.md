@@ -135,4 +135,4 @@ Then after restarting the shell, you'll find copious debugging info logged to $A
 Examples
 =========
 
-See `completions/*.yml` as well as `test/completions/*yml` for examples
+See `completions/*.yml` as well as `test/completions/*.yml` for examples
