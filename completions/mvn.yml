@@ -24,6 +24,8 @@
 
 
     '-D ': &D
+        'newVersion=':
+            '<Regex>.+ ': *mvn
         'maven.':
             'test.skip=': 
                 'true ': *mvn
@@ -281,6 +283,7 @@
         'display-dependency-updates ': *mvn
         'display-plugin-updates ': *mvn
         'display-property-updates ': *mvn
+        'set ': *mvn
     'dependency:': 
         'tree ': *mvn
         'analyze ': *mvn
