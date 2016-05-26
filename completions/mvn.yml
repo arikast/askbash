@@ -26,6 +26,9 @@
     '-D ': &D
         'newVersion=':
             '<Regex>.+ ': *mvn
+        'generateBackupPoms=':
+            'true ': *mvn
+            'false ': *mvn
         'maven.':
             'test.skip=': 
                 'true ': *mvn
@@ -284,6 +287,8 @@
         'display-plugin-updates ': *mvn
         'display-property-updates ': *mvn
         'set ': *mvn
+        'revert ': *mvn
+        'commit ': *mvn
     'dependency:': 
         'tree ': *mvn
         'analyze ': *mvn
