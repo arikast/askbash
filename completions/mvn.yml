@@ -22,13 +22,7 @@
     '-cpu ': *mvn
     '--check-plugin-updates ': *mvn
 
-
     '-D ': &D
-        'newVersion=':
-            '<Regex>.+ ': *mvn
-        'generateBackupPoms=':
-            'true ': *mvn
-            'false ': *mvn
         'maven.':
             'test.skip=': 
                 'true ': *mvn
@@ -282,11 +276,47 @@
     'site:': 
         'site ': *mvn
         'stage ': *mvn
-    'versions:':
+    'versions:': 
         'display-dependency-updates ': *mvn
         'display-plugin-updates ': *mvn
         'display-property-updates ': *mvn
-        'set ': *mvn
+        'set ': &versions_set
+            '-D':
+                'artifactIdn=':
+                    '<Regex>.+ ': *versions_set
+                'groupId=':
+                    '<Regex>.+ ': *versions_set
+                'newVersion=':
+                    '<Regex>.+ ': *versions_set
+                'newVersion=':
+                    '<Regex>.+ ': *versions_set
+                'oldVersion=':
+                    '<Regex>.+ ': *versions_set
+                'rulesUri=':
+                    '<Regex>.+ ': *versions_set
+                'serverId=':
+                    '<Regex>.+ ': *versions_set
+                'allowSnapshots=':
+                    'true ': *versions_set
+                    'false ': *versions_set
+                'generateBackupPoms=':
+                    'true ': *versions_set
+                    'false ': *versions_set
+                'processDependencies=':
+                    'true ': *versions_set
+                    'false ': *versions_set
+                'processParent=':
+                    'true ': *versions_set
+                    'false ': *versions_set
+                'processPlugins=':
+                    'true ': *versions_set
+                    'false ': *versions_set
+                'processProject=':
+                    'true ': *versions_set
+                    'false ': *versions_set
+                'updateMatchingVersions=':
+                    'true ': *versions_set
+                    'false ': *versions_set
         'revert ': *mvn
         'commit ': *mvn
     'dependency:': 
