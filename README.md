@@ -7,10 +7,10 @@ Askbash makes it easy to define your own bash autocompletions (that thing that h
 
 This means when you type a program name which matches one of the completers, such as "mvn", that you can tab-complete arguments to the program on the command line based on the definitions found in the corresponding completion file (in this case mvn.yml).
 
-How to install
+How to install and use
 ==============
 
-Note: these instructions are written using markdown.  If you are reading this file "raw" then you'll see backtick markings around the code snippets -- these backticks are formatting and are not part of the code!
+*Note: these instructions are written using markdown.  If you are reading this file "raw" then you'll see backtick markings around the code snippets -- these backticks are formatting and are not part of the code!*
 
 - First make sure Ruby 2.0+ is installed (tested against 2.0, probably also works with 1.9).
 
@@ -32,8 +32,9 @@ Note: these instructions are written using markdown.  If you are reading this fi
    $ASKBASH_HOME/completions/*.yml
 ```
 
+That's it, you now have the full existing library of bash autocompletions working for you, and an easy way to write your own additional completions as needed. 
 
-How to use
+Writing your own static completer
 ==========
 
 Your custom autocompletions are driven from a set of yaml files.  For example, suppose you have a fictitious command called "food".  You might create this completion in a file called food.yml:
@@ -100,7 +101,7 @@ Sometimes aspects of your completion hierarchy might be dynamic.  For instance, 
 
 There are many dynamic completers to do all sorts of things such as fill in a filename or list a running proc or execute an arbitrary bash command.  Take a look at the $ASKBASH_HOME/lib/completers/ to see the available completers.  Any of these completers can be used in your yml configuration; to use one, just use it in your *.yml in the same way we've used the Regex above and drop the "Completer.rb" suffix when refering to it.  So to use FileCompleter.rb for instance, you would specify `<File>` in your *.yml config.  
 
-You can also of course easily write your own completer; just place it in lib/completers and then use it like any other.
+You can also of course easily write your own completer; just place it in lib/completers and then use it like any other, and make sure its name ends in "Config.rb".
 
 
 Writing your own dynamic completer
