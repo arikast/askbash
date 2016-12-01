@@ -123,7 +123,7 @@ Then after restarting the shell, you'll find copious debugging info logged to $A
 
 - If the Bash command you are autocompleting is called foobar, then:
 
-    * You must define its completions in $ASKBASH_HOME/completions/foobar.yml or ~/.askbash/completion/foobar.yml
+    * You must define its completions in $ASKBASH_HOME/completions/foobar.yml or ~/.askbash/completions/foobar.yml
 
     * The top level node inside foobar.yml must be 'foobar '
 
