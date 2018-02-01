@@ -4,7 +4,7 @@
 export COMP_WORDBREAKS="${COMP_WORDBREAKS//:}"
 
 # the main inclusion here, finds all askbash completers and registers them with the shell
-eval "$($ASKBASH_HOME/bashrc-generator.rb)"
+eval $("$ASKBASH_HOME"/bashrc-generator.rb)
 
 # a handy utility for exploring bash's native completion behavior.  lets you type askdebug and then uses the contents of test/askdebug.sh as the tab completion 
 if [ "$ASKBASH_DEBUG" != "" ] && [ "$ASKBASH_DEBUG" != "0" ]; then
