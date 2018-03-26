@@ -17,13 +17,16 @@ def allCompletionConfs(locations)
     dupcheck = {} 
 
     locations.each {|loc|
-        confs = Dir.glob("#{loc}/completions/*.yml")
+        completionDir = "#{loc}/completions" 
+        log "searching for completion configs in #{completionDir}"
+        confs = Dir.glob("#{completionDir}/*.yml")
         if ! confs.nil?
             confs.each { |c|
                 cmd = File.basename(c)
                 cmd = cmd[0, cmd.length - '.yml'.length]
                 if dupcheck[cmd].nil?
                     dupcheck[cmd]=true
+                    log "mapping #{cmd} -> #{c}"
                     answer.push CompletionConf.new(cmd, c)
                 end
             }

@@ -15,10 +15,17 @@ begin
     config = ARGV[0]
     #config = completionConfSearch( COMPLETION_CONF_DIRS )
 
-    log "attempting completion for #{ENV['COMP_LINE']}"
+    textToComplete = ENV['COMP_LINE']
+    if textToComplete.nil? || textToComplete.strip.length == 0
+        if ARGV.size > 1
+            textToComplete = ARGV[1..-1].join ' '
+        end
+    end
+
+    log "attempting completion for #{textToComplete}"
     log "using config #{config}"
 
-    ac = AutoCompleter.new(config, ENV["COMP_LINE"])
+    ac = AutoCompleter.new(config, textToComplete)
 
     answer = ac.parse
     log "returned #{answer}"
