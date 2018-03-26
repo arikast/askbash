@@ -130,7 +130,7 @@ Then after restarting the shell, you'll find copious debugging info logged to $A
 - If you want spaces after your completions, then you need to quote them and include the space as part of the completion, eg:
     '-r ':
 
-- As seen above, all completions must end with a colon, with the exception of references which occur after the colon (but the colon must still be present!)
+- As seen above, each completion definition in your *.yml file must end with a colon, with the exception of references which occur after the colon (but the colon must still be present!)
 
 
 Examples
